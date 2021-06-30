@@ -1,8 +1,7 @@
 import React, {useState} from 'react'
-import {Modal} from 'react-modal'
+import Modal from 'react-modal'
 
-export default ConfirmationModal =({text, onConfirm, openState}) ->
-  [isOpen, setIsOpen] = openState
+export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
   <Modal
     isOpen={isOpen}
   >
