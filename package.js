@@ -13,6 +13,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('2.2');
   api.use('ecmascript');
+  api.use('coffeescript');
   api.use('typescript');
   api.mainModule('sdui-uniforms.js');
 });
@@ -20,6 +21,8 @@ Package.onUse(function(api) {
 Package.onTest(function(api) {
   api.use('ecmascript');
   api.use('tinytest');
+  api.use('coffeescript');
+  api.use('typescript');
   api.use('sdui-uniforms');
   api.mainModule('sdui-uniforms-tests.js');
 });
