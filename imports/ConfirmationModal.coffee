@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from 'react-modal'
 
-export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
+export default ConfirmationModal =({text, onConfirm, isOpen, onRequestClose}) ->
   <Modal
     isOpen={isOpen}
   >
