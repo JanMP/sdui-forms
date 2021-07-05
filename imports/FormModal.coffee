@@ -9,7 +9,12 @@ import Modal from 'react-modal'
 export default FormModal = ({schemaBridge, onSubmit, model,
 isOpen, onRequestClose, header, children, disabled = false, readOnly}) ->
 
-  <Modal isOpen={isOpen} onRequestClose={onRequestClose}>
+  <Modal
+    isOpen={isOpen}
+    onRequestClose={onRequestClose}
+    className="modal"
+    overlayClassName="overlay"
+  >
     {if header? then <h2> {header} </h2>}
     
     <AutoForm
