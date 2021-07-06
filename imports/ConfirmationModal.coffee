@@ -17,8 +17,8 @@ export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
     overlayClassName="overlay"
   >
     <div>{text}</div>
-    <div>
-      <button onClick={handleCancelClick} className="bg-red-500 text-white">Abbrechen</button>
-      <button onClick={handleOkClick} className="bg-green-500 text-white">OK</button>
+    <div className="flex justify-end mt-2">
+      <button onClick={handleCancelClick} className="bg-red-500 text-white py-1 px-2 rounded">Abbrechen</button>
+      <button onClick={handleOkClick} className="bg-green-500 text-white py-1 px-2 rounded ml-1">OK</button>
     </div>
   </Modal>
