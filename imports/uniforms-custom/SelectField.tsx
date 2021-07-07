@@ -1,7 +1,8 @@
 import xor from 'lodash/xor';
-import React, { Ref } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { HTMLFieldProps, connectField, filterDOMProps } from 'uniforms';
 import setErrorClass from './setErrorClass';
+import {Select as ReactSelect} from 'react-functional-select';
 
 const base64: typeof btoa =
   typeof btoa !== 'undefined' ? btoa : x => Buffer.from(x).toString('base64');
@@ -38,6 +39,20 @@ function Select({
   ...props
 }: SelectFieldProps) {
   const multiple = fieldType === Array;
+  const selectRef = useRef(null)
+
+  const optionFromValue = (value) => {
+    return {
+      key: value,
+      value: value,
+      label: transform ? transform(value) : value
+    }
+  }
+
+  useEffect(() =>{
+    selectRef.current?.setValue(optionFromValue(value))
+  }, [value])
+
   return (
     <div {...filterDOMProps(props)} className={(checkboxes && setErrorClass(props)) || ""}>
       {label && <label htmlFor={id}>{label}</label>}
@@ -65,38 +80,13 @@ function Select({
           </div>
         ))
       ) : (
-        <select
-          className={setErrorClass(props)}
+        <ReactSelect
+          ref={selectRef}
           disabled={disabled}
-          id={id}
-          multiple={multiple}
-          name={name}
-          onChange={event => {
-            if (!readOnly) {
-              const item = event.target.value;
-              if (multiple) {
-                const clear = event.target.selectedIndex === -1;
-                onChange(clear ? [] : xor([item], value));
-              } else {
-                onChange(item !== '' ? item : undefined);
-              }
-            }
-          }}
-          ref={inputRef}
-          value={value ?? ''}
-        >
-          {(!!placeholder || !required || value === undefined) && !multiple && (
-            <option value="" disabled={required} hidden={required}>
-              {placeholder || label}
-            </option>
-          )}
-
-          {allowedValues?.map(value => (
-            <option disabled={disableItem?.(value)} key={value} value={value}>
-              {transform ? transform(value) : value}
-            </option>
-          ))}
-        </select>
+          isMulti={multiple}
+          onOptionChange={(option) => onChange(option.value)}
+          options={allowedValues?.map(optionFromValue)}
+        />
       )}
     </div>
   );
