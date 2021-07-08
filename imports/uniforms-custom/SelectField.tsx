@@ -1,8 +1,9 @@
 import xor from 'lodash/xor';
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { HTMLFieldProps, connectField, filterDOMProps } from 'uniforms';
 import setErrorClass from './setErrorClass';
-import {Select as ReactSelect} from 'react-functional-select';
+import { Select as ReactSelect } from 'react-functional-select';
+import isEqual from 'lodash/isEqual';
 
 const base64: typeof btoa =
   typeof btoa !== 'undefined' ? btoa : x => Buffer.from(x).toString('base64');
@@ -38,56 +39,65 @@ function Select({
   value,
   ...props
 }: SelectFieldProps) {
+  
   const multiple = fieldType === Array;
-  const selectRef = useRef(null)
+  const selectRef = useRef(null);
+  const [oldValue, setOldValue] = useState(null)
 
-  const optionFromValue = (value) => {
+  const optionFromValue = useCallback((value) => {
     return {
       key: value,
       value: value,
       label: transform ? transform(value) : value
-    }
-  }
+    };
+  })
 
-  useEffect(() =>{
-    selectRef.current?.setValue(optionFromValue(value))
-  }, [value])
+  const onOptionChange = useCallback((value) => {
+    const result = (multiple ? value.map(v => v.value) : value.value);
+    onChange(result);
+  }, [multiple])
+
+  useEffect(() => {
+    if (isEqual(value, oldValue)) {return}
+    setOldValue(value)
+    selectRef.current?.setValue(multiple ? value.map(optionFromValue) : optionFromValue(value));
+  }, [ value ]);
 
   return (
-    <div {...filterDOMProps(props)} className={(checkboxes && setErrorClass(props)) || ""}>
-      {label && <label htmlFor={id}>{label}</label>}
-      {checkboxes ? (
+    <div { ...filterDOMProps(props) } className={ (checkboxes && setErrorClass(props)) || "" }>
+      { label && <label htmlFor={ id }>{ label }</label> }
+      { checkboxes ? (
         allowedValues!.map(item => (
-          <div key={item}>
+          <div key={ item }>
             <input
               checked={
                 fieldType === Array ? value!.includes(item) : value === item
               }
-              disabled={disableItem?.(item) ?? disabled}
-              id={`${id}-${escape(item)}`}
-              name={name}
-              onChange={() => {
+              disabled={ disableItem?.(item) ?? disabled }
+              id={ `${id}-${escape(item)}` }
+              name={ name }
+              onChange={ () => {
                 if (!readOnly) {
-                  onChange(fieldType === Array ? xor([item], value) : item);
+                  onChange(fieldType === Array ? xor([ item ], value) : item);
                 }
-              }}
+              } }
               type="checkbox"
             />
 
-            <label htmlFor={`${id}-${escape(item)}`}>
-              {transform ? transform(item) : item}
+            <label htmlFor={ `${id}-${escape(item)}` }>
+              { transform ? transform(item) : item }
             </label>
           </div>
         ))
       ) : (
         <ReactSelect
-          ref={selectRef}
-          disabled={disabled}
-          isMulti={multiple}
-          onOptionChange={(option) => onChange(option.value)}
-          options={allowedValues?.map(optionFromValue)}
+          ref={ selectRef }
+          disabled={ disabled }
+          isMulti={ multiple }
+          onOptionChange={ onOptionChange }
+          options={ allowedValues?.map(optionFromValue) }
         />
-      )}
+      ) }
     </div>
   );
 }
