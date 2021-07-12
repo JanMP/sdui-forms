@@ -96,6 +96,7 @@ function Select({
           isMulti={ multiple }
           onOptionChange={ onOptionChange }
           options={ allowedValues?.map(optionFromValue) }
+          themeConfig={{control: {padding: "0 0.75rem", minHeight: '32px'}}}
         />
       ) }
     </div>
