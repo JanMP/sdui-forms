@@ -10,3 +10,4 @@ export { default as SubmitField } from './imports/uniforms-custom/SubmitField';
 export { default as FormModal } from './imports/FormModal';
 export { default as ConfirmationModal } from './imports/ConfirmationModal';
 export { default as meteorApply } from './imports/meteorApply'
+export { default as ControlledSelect} from './imports/ControlledSelect.coffee'
