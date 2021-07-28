@@ -18,7 +18,7 @@ export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
   >
     <div>{text}</div>
     <div className="flex justify-end mt-2">
-      <button onClick={handleCancelClick} className="bg-red-500 text-white py-1 px-2 rounded">Abbrechen</button>
-      <button onClick={handleOkClick} className="bg-green-500 text-white py-1 px-2 rounded ml-1">OK</button>
+      <button onClick={handleCancelClick} className="cancel">Abbrechen</button>
+      <button onClick={handleOkClick} className="ok">OK</button>
     </div>
   </Modal>
