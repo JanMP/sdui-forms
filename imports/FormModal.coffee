@@ -25,5 +25,4 @@ isOpen, onRequestClose, header, children, disabled = false, readOnly}) ->
       disabled={disabled}
       validate="onChange"
     />
-   
   </Modal>

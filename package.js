@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'janmp:sdui-uniforms',
+  name: 'janmp:sdui-forms',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -15,7 +15,7 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('coffeescript');
   api.use('typescript');
-  api.mainModule('sdui-uniforms.js');
+  api.mainModule('sdui-forms.js');
 });
 
 Package.onTest(function(api) {
@@ -23,6 +23,6 @@ Package.onTest(function(api) {
   api.use('tinytest');
   api.use('coffeescript');
   api.use('typescript');
-  api.use('sdui-uniforms');
-  api.mainModule('sdui-uniforms-tests.js');
+  api.use('sdui-forms');
+  api.mainModule('sdui-forms-tests.js');
 });
