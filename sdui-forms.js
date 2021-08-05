@@ -11,3 +11,5 @@ export { default as FormModal } from './imports/FormModal';
 export { default as ConfirmationModal } from './imports/ConfirmationModal';
 export { default as meteorApply } from './imports/meteorApply'
 export { default as ControlledSelect} from './imports/ControlledSelect.coffee'
+export {default as LoginForm} from './imports/LoginForm'
+export {default as SetPasswordForm} from './imports/SetPasswordForm'
