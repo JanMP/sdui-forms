@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'janmp:sdui-forms',
+  name: 'janmp:sdui-forms-original',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -15,6 +15,8 @@ Package.onUse(function(api) {
   api.use('ecmascript');
   api.use('coffeescript');
   api.use('typescript');
+  api.use('accounts-base');
+  api.use('accounts-password');
   api.mainModule('sdui-forms.js');
 });
 
