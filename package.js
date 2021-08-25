@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'janmp:sdui-forms-original',
+  name: 'janmp:sdui-forms',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -17,6 +17,7 @@ Package.onUse(function(api) {
   api.use('typescript');
   api.use('accounts-base');
   api.use('accounts-password');
+  api.use('react-meteor-data');
   api.mainModule('sdui-forms.js');
 });
 
