@@ -18,7 +18,7 @@ export default ConfirmationModal = ({text, onConfirm = ->, onCancel = ->, isOpen
     overlayClassName="overlay"
   >
     <div>{text}</div>
-    <div className="flex justify-end mt-2">
+    <div className="button-row">
       <button className="cancel-button" onClick={handleCancelClick} >Abbrechen</button>
       <button className="ok-button" onClick={handleOkClick} >OK</button>
     </div>
