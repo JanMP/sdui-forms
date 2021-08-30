@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import Modal from 'react-modal'
 
-export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
+export default ConfirmationModal = ({text, onConfirm = ->, onCancel = ->, isOpen, setIsOpen}) ->
 
   handleOkClick = ->
     setIsOpen false
@@ -9,6 +9,7 @@ export default ConfirmationModal =({text, onConfirm, isOpen, setIsOpen}) ->
 
   handleCancelClick = ->
     setIsOpen false
+    onCancel()
 
   <Modal
     isOpen={isOpen}
