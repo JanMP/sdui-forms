@@ -14,7 +14,7 @@ export default ConfirmationModal = ({text, onConfirm = ->, onCancel = ->, isOpen
   <Modal
     isOpen={isOpen}
     onRequestClose={-> setIsOpen false}
-    className="modal"
+    className="modal confirmation-modal"
     overlayClassName="overlay"
   >
     <div>{text}</div>
