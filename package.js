@@ -27,5 +27,5 @@ Package.onTest(function(api) {
   api.use('coffeescript');
   api.use('typescript');
   api.use('sdui-forms');
-  api.mainModule('sdui-forms-tests.js');
+  api.mainModule('sdui-forms-tests.js', 'client', {lazy: true});
 });
