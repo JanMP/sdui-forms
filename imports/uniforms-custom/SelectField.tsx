@@ -94,6 +94,7 @@ function Select({
           ref={ selectRef }
           disabled={ disabled }
           isMulti={ multiple }
+          isInvalid={ props.error != null }
           onOptionChange={ onOptionChange }
           options={ allowedValues?.map(optionFromValue) }
           themeConfig={{control: {padding: "0 0.75rem", minHeight: '32px'}}}
