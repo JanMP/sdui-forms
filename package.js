@@ -18,7 +18,7 @@ Package.onUse(function(api) {
   api.use('accounts-base');
   api.use('accounts-password');
   api.use('react-meteor-data');
-  api.mainModule('sdui-forms.js');
+  api.mainModule('sdui-forms-dynamic.coffee');
 });
 
 Package.onTest(function(api) {
