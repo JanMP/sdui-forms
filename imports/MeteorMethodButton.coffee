@@ -8,13 +8,13 @@ import _ from 'lodash'
 
 import ConfirmationModal from './ConfirmationModal'
 
-export default MeteorMethodButton = ({method, data, options, handler, label, icon, buttonClass,
+export default MeteorMethodButton = ({method, data, options, handler, label, icon, className,
 onSuccess, successMsg, onError, errorMsg, disabled, confirmation}) ->
 
   data ?= {}
   options ?= {}
   label ?= unless icon? then "run #{method}"
-  buttonClass ?= if icon? and not label? then 'icon-button'
+  className ?= if icon? and not label? then 'icon-button'
 
   onSuccess ?= (result) -> if successMsg? then toast.success successMsg
   onError ?= (error) -> toast.error "#{errorMsg ? error}"
@@ -60,7 +60,7 @@ onSuccess, successMsg, onError, errorMsg, disabled, confirmation}) ->
         />
     }
     <button
-      className={buttonClass}
+      className={className}
       disabled={disabled}
       onClick={handleClick}
     >

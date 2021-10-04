@@ -33,7 +33,6 @@ function Select({
   onChange,
   placeholder,
   readOnly,
-  required,
   disableItem,
   transform,
   value,
