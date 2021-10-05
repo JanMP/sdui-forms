@@ -45,9 +45,6 @@ onSuccess, successMsg, onError, errorMsg, disabled, confirmation}) ->
     else
       doIt()
 
-  useEffect ->
-    console.log isBusy
-  , [isBusy]
 
   <>
     {
