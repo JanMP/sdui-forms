@@ -13,6 +13,7 @@ function Bool({
   id,
   inputRef,
   label,
+  labelLinkTo,
   name,
   onChange,
   readOnly,
@@ -32,7 +33,9 @@ function Bool({
         type="checkbox"
       />
 
-      {label && <label htmlFor={id}>{label}</label>}
+      {label && <label htmlFor={id}>{
+        labelLinkTo ? <a href={labelLinkTo}>{label}</a> : label
+      }</label>}
     </div>
   );
 }
